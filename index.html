@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>reveal.js - The HTML Presentation Framework</title>
+        <title>Geoportail v3 - workshop - Bootstrap & LESSCSS</title>
 
         <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
         <meta name="author" content="Hakim El Hattab">
@@ -45,6 +45,270 @@
                 <section>
                     <h3>Geoportail V3 - Workshop</h3>
                     <h1>Twitter Bootstrap & LESSCSS</h1>
+                </section>
+                <section>
+                    <h2>Bootstrap</h2>
+                </section>
+                <section>
+                    Framework<br><small>(HTML)</small> <strong>CSS</strong> <small>(Javascript)</small>
+                </section>
+                <section>
+                    <h3>Mobile first</h3>
+                    <p>Contrairement à Bootstrap2, dans la version 3<br><strong>Bootstrap is mobile first</strong>.
+                    <br>
+                    Les styles adaptés au mobile sont partout dans la librairie.</p>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## viewport meta tag
+                        A rajouter dans le head :
+                        ``` html
+                        <meta name="viewport"
+                              content="width=device-width, initial-scale=1,
+                              maximum-scale=1, user-scalable=no">
+                        ```
+                    </script>
+                </section>
+                <section>
+                    <h3>Containers</h3>
+                    <pre><code class="html"><div class="container">
+  ...
+</div></code></pre>
+or
+                    <pre><code class="html"><div class="container-fluid">
+  ...
+</div></code></pre>
+                </section>
+                <section>
+                    <h3>Grid System</h3>
+                    12 colonnes<br>
+                    <img src="img/grid_system.png" />
+                </section>
+                <section data-markdown>
+                    ### Grid System
+                    <script type="text/template">
+                        Dépendant de la taille du navigateur
+
+                        [Responsive grid](http://www.bootply.com/QNmok4rDjq)
+                    </script>
+                </section>
+                <section data-markdown>
+                    ### Grid System
+                    <script type="text/template">
+                        Nesting
+
+                        ![nesting](img/grid_system_nesting.png)
+                    </script>
+                </section>
+                <section>
+                    <h3>Grid System</h3>
+                    media queries
+                    <pre><code class="css"> /* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) { ... }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { ... }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }
+</code></pre>
+                </section>
+                <section>
+                    <h3>Grid System</h3>
+                    max-width
+                    <pre><code class="css">@media (max-width: @screen-xs-max) { ... }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+@media (min-width: @screen-lg-min) { ... }
+</code></pre>
+                </section>
+                <section>
+                    <h3>Buttons</h3>
+                    <pre><code class="html"><button type="button" class="btn btn-default btn-lg">Large button</button>
+<button type="button" class="btn btn-default">Default button</button>
+<button type="button" class="btn btn-default btn-sm">Small button</button>
+<button type="button" class="btn btn-default btn-xs">Extra small button</button></code></pre>
+                    <img src="img/buttons.png">
+                </section>
+                <section>
+                    <h3>Responsive utilities</h3>
+                    .visible-xs-* (ex. .visible-xs-block)<br>
+                    .hidden-xs<br>
+                    <a href="http://getbootstrap.com/css/#responsive-utilities">more info</a>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Resources & Tools
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Resources & Tools
+                        [Bootply](http://www.bootply.com/)
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Resources & Tools
+                        Chrome Developers tools
+                        <br>
+                        <img src="img/dev_tools.png" />
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                    </script>
+                </section>
+                <section>
+                    <h2>Less</h2>
+                </section>
+                <section>
+                    CSS preprocessor
+                    <br>
+                    variables, mixins, functions, nesting
+                    <br>
+                    <a href="http://lesscss.org/">lesscss.org</a>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### variables
+                        ``` css
+a,
+.link {
+  color: #428bca;
+}
+.widget {
+  color: #fff;
+  background: #428bca;
+}
+```
+vs.
+``` css
+// Variables
+@link-color: #428bca;
+
+// Usage
+a,
+.link {
+  color: @link-color;
+}
+.widget {
+  color: #fff;
+  background: @link-color;
+}
+```
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### mixins
+                        ``` css
+.a, #b {
+  color: red;
+}
+.mixin-class {
+  .a();
+}
+.mixin-id {
+  #b();
+}
+                        ```
+                        compiles to
+                        ``` css
+.a, #b {
+  color: red;
+}
+.mixin-class {
+  color: red;
+}
+.mixin-id {
+  color: red;
+}
+                        ```
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Parametric mixins
+                        ``` css
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+                        ```
+                        Usage
+                        ``` css
+#header {
+  .border-radius(4px);
+}
+.button {
+  .border-radius(6px);
+}
+                        ```
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Functions
+                        ``` css
+@base: #f04615;
+@width: 0.5;
+
+.class {
+  width: percentage(@width); // returns `50%`
+  color: saturate(@base, 5%);
+  background-color: spin(lighten(@base, 25%), 8);
+}
+                        ```
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Nested rules
+                        ``` css
+#header {
+  color: black;
+}
+#header .navigation {
+  font-size: 12px;
+}
+#header .logo {
+  width: 300px;
+}
+                        ```
+vs.
+```css
+#header {
+  color: black;
+  .navigation {
+    font-size: 12px;
+  }
+  .logo {
+    width: 300px;
+  }
+}
+```
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Importing
+                        ``` css
+@import "library"; // library.less
+@import "typo.css";
+                        ```
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Integration with Boostrap
+                        [variables.less](https://github.com/twbs/bootstrap/blob/master/less/variables.less)
+                        [variables list](http://getbootstrap.com/customize/#less-variables-section)
+                    </script>
                 </section>
             </div>
 
